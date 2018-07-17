@@ -27,13 +27,20 @@ javacOptions ++= Seq("-source", "1.8", "-target", "1.8")
 assemblyOption in assembly := (assemblyOption in assembly).value.copy(
 	includeScala = false
 )
+spIgnoreProvided := true
 
-assemblyMergeStrategy in assembly <<= (assemblyMergeStrategy in assembly) {
-  (old) => {
-    case PathList("META-INF", "MANIFEST.MF") => MergeStrategy.discard
-    case PathList("META-INF", xs @ _*) => MergeStrategy.last
-	case x => MergeStrategy.last
-  }
+ivyScala := ivyScala.value map {
+  _.copy(overrideScalaVersion = true)
 }
 
-EclipseKeys.withSource := true
+assemblyMergeStrategy in assembly := {
+  case PathList("META-INF", "MANIFEST.MF") => MergeStrategy.discard
+  case PathList("META-INF", xs@_*) => MergeStrategy.last
+  case PathList("pyspark_cassandra", "__pycache__", xs@_*) => MergeStrategy.discard
+  case PathList("pyspark_cassandra", "__pycache__") => MergeStrategy.discard  
+  case x =>
+    val oldStrategy = (assemblyMergeStrategy in assembly).value
+    oldStrategy(x)
+}
+
+unmanagedResourceDirectories in Compile += { baseDirectory.value / "python" }
