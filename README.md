@@ -1,12 +1,9 @@
 PySpark Cassandra
 =================
 
-**This PySpark Cassandra repository is no longer maintained. Please check this repository for Spark 2.0+ support: https://github.com/anguenot/pyspark-cassandra**
+**This PySpark Cassandra repository is no longer maintained and should be used only for Spark < 2.0. Please check this repository for Spark 2.0+ support: https://github.com/anguenot/pyspark-cassandra**
 
 ---
-
-[![Build Status](https://travis-ci.org/TargetHolding/pyspark-cassandra.svg)](https://travis-ci.org/TargetHolding/pyspark-cassandra)
-[![Codacy Badge](https://api.codacy.com/project/badge/grade/1fb73418b06b4db18e3a4103a0ce056c)](https://www.codacy.com/app/frensjan/pyspark-cassandra)
 
 PySpark Cassandra brings back the fun in working with Cassandra data in PySpark.
 
